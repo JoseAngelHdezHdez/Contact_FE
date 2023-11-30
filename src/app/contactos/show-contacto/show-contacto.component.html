@@ -1,0 +1,83 @@
+<button
+  type="button"
+  class="btn btn-primary float-end mb-3"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+  (click)="modalAdd()">
+  New Contacto
+</button>
+
+<!-- Alert-->
+<div class="alert alert-success" role="alert" id="add-success-alert">
+  Contact successfully added!
+</div>
+<div class="alert alert-success" role="alert" id="update-success-alert">
+  Contact successfully updated!
+</div>
+<div class="alert alert-success" role="alert" id="delete-success-alert">
+  Contact successfully deleted!
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Version</th>
+    <th>Comment</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of contactList$ | async">
+      <td>{{ item.id }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.date }}</td>
+      <td>{{ item.version }}</td>
+      <td>{{ item.comment }}</td>
+      <td class="d-flex">
+        <button
+          class="btn btn-outline-primary btn-sm m-2"
+          (click)="modalEdit(item)" data-bs-toggle="modal"
+          data-bs-target="#exampleModal">
+          Edit
+        </button>
+        <button
+          class="btn btn-outline-danger btn-sm m-2"
+          (click)="delete(item)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          {{ modalTitle }}
+        </h1>
+        <button
+          type="button"
+          id="add-edit-modal-close"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="modalClose()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-add-edit-contacto [contact]="contact" *ngIf="activateAddEditContactComponent"></app-add-edit-contacto>
+      </div>
+    </div>
+  </div>
+</div>

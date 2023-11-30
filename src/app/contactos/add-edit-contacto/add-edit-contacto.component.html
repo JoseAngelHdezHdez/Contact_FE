@@ -1,0 +1,24 @@
+<form>
+  <div class="mb-3">
+    <label for="contactName" class="form-label">Name</label>
+    <input type="text" class="form-control" name="contactName"
+      [(ngModel)]="name" disable/>
+  </div>
+  <div class="mb-3">
+    <label for="contactDate" class="form-label">Date</label>
+    <input type="text" class="form-control" name="contactDate"
+      [(ngModel)]="date" disable/>
+  </div>
+  <div class="mb-3">
+    <label for="contactVersion" class="form-label">Version</label>
+    <input type="text" class="form-control" name="contactVersion"
+      [(ngModel)]="version" disable/>
+  </div>
+  <div class="mb-3">
+    <label for="contactComment" class="form-label">Comment</label>
+    <input type="text" class="form-control" name="contactComment"
+      [(ngModel)]="comment" disable/>
+  </div>
+  <button class="btn btn-primary" (click)="addContact()" *ngIf="contact.id==0">Add</button>
+  <button class="btn btn-primary" (click)="updateContact()" *ngIf="contact.id!=0">Update</button>
+</form>
